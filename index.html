@@ -88,17 +88,22 @@
     padding: 120px 5% 80px;
     position: relative;
     overflow: hidden;
+    background-image: url('hero.jpg');
+    background-size: cover;
+    background-position: center top;
   }
 
   .hero::before {
     content: '';
     position: absolute;
-    top: 20%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(13,13,13,0.2) 0%,
+      rgba(13,13,13,0.1) 40%,
+      rgba(13,13,13,0.5) 85%,
+      rgba(13,13,13,0.85) 100%
+    );
     pointer-events: none;
   }
 
@@ -475,8 +480,7 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-tag">Estudio de IA para negocios locales</div>
-  <h1>Tu negocio, con inteligencia artificial que trabaja <em>24/7</em></h1>
+  <h1>AbsolutIA — Agencia de IA Integral</h1>
   <p class="hero-sub">Chatbots, automatizaciones, presencia web y agentes autónomos. Todo listo para tu sector, sin tecnicismos, sin fricción.</p>
   <div class="hero-actions">
     <a href="#precios" class="btn-primary">Ver planes y precios</a>
@@ -495,14 +499,14 @@
       <div class="sector-label">Salud</div>
       <div class="sector-name">Clínicas y Centros de Salud</div>
       <div class="sector-desc">Gestión de citas, recordatorios automáticos, chatbot para primeras consultas y ficha de paciente inteligente.</div>
-      <div class="sector-product">Ebery Office</div>
+      <div class="sector-product">Sector Salud</div>
     </div>
     <div class="sector-card">
       <div class="sector-icon">🏠</div>
       <div class="sector-label">Inmobiliaria</div>
       <div class="sector-name">Agencias Inmobiliarias</div>
       <div class="sector-desc">Captación de leads, seguimiento automatizado, presentación de propiedades y gestión de agenda comercial.</div>
-      <div class="sector-product">Alorac Office</div>
+      <div class="sector-product">Sector Inmobiliario</div>
     </div>
     <div class="sector-card">
       <div class="sector-icon">⚖️</div>
@@ -516,7 +520,7 @@
       <div class="sector-label">Pymes y Familia</div>
       <div class="sector-name">Pequeñas Empresas</div>
       <div class="sector-desc">Panel de control centralizado, atención al cliente 24/7, automatizaciones de back-office y presencia digital.</div>
-      <div class="sector-product">FamilyIA</div>
+      <div class="sector-product">Sector Familia</div>
     </div>
   </div>
 </section>
