@@ -1,638 +1,605 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AbsolutIA — IA Integral para tu Negocio</title>
-<meta name="description" content="Chatbots, automatizaciones, presencia web y agentes autónomos. Todo listo para tu sector, sin tecnicismos, sin fricción.">
+<title>AbsolutIA — Estudio de IA Integral · Ibiza</title>
+<meta name="description" content="Mandanos un mail y tu negocio se organiza solo. Web, asistente y documentos en orden, sin aprender nada nuevo.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22%230b0a08%22/><circle cx=%2250%22 cy=%2250%22 r=%2222%22 fill=%22none%22 stroke=%22%23d3a55c%22 stroke-width=%226%22/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --bg: #0d0d0d;
-    --bg2: #111111;
-    --bg3: #161616;
-    --gold: #c9a84c;
-    --gold-light: #e4c06b;
-    --white: #ffffff;
-    --gray: #888888;
-    --gray-light: #cccccc;
-    --border: rgba(255,255,255,0.07);
+  :root{
+    --bg: #0a0908;
+    --bg-soft: #121110;
+    --panel: #171512;
+    --line: rgba(255,255,255,0.09);
+    --ink: #f2ede4;
+    --ink-dim: #b8b0a2;
+    --ink-faint: #8a8276;
+    --gold: #d3a55c;
+    --gold-soft: #e8c98b;
+    --gold-dim: rgba(211,165,92,0.15);
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --maxw: 1120px;
   }
 
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    background: var(--bg);
-    color: var(--white);
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{max-width:100%;}
+  a{color:inherit;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
+  h1,h2,h3{font-family:var(--serif); font-weight:600; letter-spacing:0.01em;}
+  .eyebrow{
+    font-family:var(--sans); font-size:12px; letter-spacing:0.18em; text-transform:uppercase;
+    color:var(--gold); font-weight:600;
   }
 
-  /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 5%;
-    height: 68px;
-    background: rgba(13,13,13,0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
+  /* ---------- HEADER ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 24px;
+    background:linear-gradient(to bottom, rgba(10,9,8,0.92), rgba(10,9,8,0));
+    backdrop-filter:blur(6px);
+  }
+  .logo{
+    font-family:var(--serif); font-size:22px; font-weight:700; letter-spacing:0.02em; color:var(--ink);
+  }
+  .logo span{color:var(--gold);}
+  .lang-toggle{
+    display:flex; align-items:center; gap:2px;
+    border:1px solid var(--line); border-radius:20px; padding:4px; font-size:12px;
+  }
+  .lang-toggle button{
+    background:none; border:none; color:var(--ink-faint); font-family:var(--sans);
+    font-size:12px; font-weight:600; letter-spacing:0.05em; padding:5px 11px; border-radius:16px;
+    cursor:pointer; transition:all .25s ease;
+  }
+  .lang-toggle button.active{background:var(--gold); color:#1a1408;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center;
+    padding:120px 24px 80px;
+    overflow:hidden;
+  }
+  .hero-glow{
+    position:absolute; inset:0; z-index:0; pointer-events:none;
+  }
+  .hero-glow::before{
+    content:''; position:absolute; top:-20%; left:50%; transform:translateX(-50%);
+    width:900px; height:900px; max-width:180vw;
+    background:radial-gradient(circle, rgba(211,165,92,0.16) 0%, rgba(211,165,92,0.05) 40%, transparent 70%);
+    border-radius:50%;
+  }
+  .hero-glow::after{
+    content:''; position:absolute; bottom:-30%; right:-10%;
+    width:600px; height:600px;
+    background:radial-gradient(circle, rgba(211,165,92,0.08) 0%, transparent 65%);
+    border-radius:50%;
+  }
+  .hero-ring{
+    position:absolute; border:1px solid rgba(211,165,92,0.18); border-radius:50%;
+    pointer-events:none;
+  }
+  .hero-ring.r1{width:520px; height:520px; top:8%; left:50%; transform:translateX(-50%);}
+  .hero-ring.r2{width:340px; height:340px; top:18%; left:50%; transform:translateX(-50%);}
+  .hero-content{position:relative; z-index:1; max-width:760px;}
+  .hero .eyebrow{display:block; margin-bottom:22px;}
+  .hero h1{
+    font-size:clamp(34px, 7vw, 64px);
+    line-height:1.12;
+    color:var(--ink);
+    margin-bottom:24px;
+  }
+  .hero h1 em{
+    font-style:italic; color:var(--gold-soft);
+  }
+  .hero p.sub{
+    font-size:clamp(16px, 2.4vw, 19px);
+    color:var(--ink-dim);
+    max-width:520px;
+    margin:0 auto 40px;
+    font-weight:400;
+  }
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    background:var(--gold);
+    color:#1a1408;
+    font-family:var(--sans); font-weight:600; font-size:15px;
+    padding:16px 34px;
+    border-radius:4px;
+    text-decoration:none;
+    border:1px solid var(--gold);
+    transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+    box-shadow:0 8px 30px rgba(211,165,92,0.18);
+  }
+  .btn:hover{transform:translateY(-2px); background:var(--gold-soft); box-shadow:0 12px 36px rgba(211,165,92,0.28);}
+  .btn.ghost{
+    background:transparent; color:var(--ink); border:1px solid var(--line); box-shadow:none;
+  }
+  .btn.ghost:hover{border-color:var(--gold); color:var(--gold-soft); background:transparent;}
+  .scroll-cue{
+    position:absolute; bottom:36px; left:50%; transform:translateX(-50%);
+    font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink-faint);
+    display:flex; flex-direction:column; align-items:center; gap:10px;
+    z-index:1;
+  }
+  .scroll-cue .line{width:1px; height:34px; background:linear-gradient(to bottom, var(--gold), transparent); animation:pulse 2s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{opacity:.3;}50%{opacity:1;}}
+
+  /* ---------- SECTION SHARED ---------- */
+  section{padding:110px 0;}
+  .section-head{max-width:640px; margin:0 auto 56px; text-align:center;}
+  .section-head .eyebrow{display:block; margin-bottom:14px;}
+  .section-head h2{font-size:clamp(28px, 4.2vw, 42px); line-height:1.2; color:var(--ink);}
+  .section-head p{color:var(--ink-dim); font-size:16px; margin-top:16px;}
+
+  .reveal{opacity:0; transform:translateY(28px); transition:opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1);}
+  .reveal.visible{opacity:1; transform:translateY(0);}
+
+  /* ---------- PROBLEM ---------- */
+  .problem{background:var(--bg-soft); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .problem-inner{max-width:720px; margin:0 auto; text-align:center;}
+  .problem-inner .eyebrow{display:block; margin-bottom:18px;}
+  .problem-inner h2{font-size:clamp(24px, 4vw, 34px); line-height:1.4; color:var(--ink-dim); font-weight:500; font-style:italic;}
+  .problem-inner h2 strong{font-style:normal; font-weight:600; color:var(--ink); border-bottom:1px solid var(--gold-dim);}
+  .problem-inner .payoff{
+    margin-top:34px; font-family:var(--serif); font-size:clamp(22px, 3.4vw, 30px); color:var(--gold-soft); font-weight:600;
   }
 
-  .nav-logo {
-    font-size: 1.4rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    color: var(--white);
-    text-decoration: none;
+  /* ---------- HOW IT WORKS ---------- */
+  .steps{
+    display:grid; grid-template-columns:1fr; gap:22px;
+    max-width:960px; margin:0 auto;
   }
-  .nav-logo span { color: var(--gold); }
-
-  .nav-links {
-    display: flex; gap: 2rem; list-style: none;
+  @media(min-width:820px){ .steps{grid-template-columns:repeat(3, 1fr); gap:26px;} }
+  .step{
+    background:var(--panel); border:1px solid var(--line); border-radius:10px;
+    padding:38px 30px; position:relative;
   }
-  .nav-links a {
-    color: var(--gray-light);
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 400;
-    transition: color 0.2s;
+  .step .num{
+    font-family:var(--serif); font-size:15px; color:var(--gold); letter-spacing:0.1em;
+    display:block; margin-bottom:18px;
   }
-  .nav-links a:hover { color: var(--white); }
-
-  .nav-cta {
-    background: var(--gold);
-    color: #000;
-    padding: 0.55rem 1.2rem;
-    border-radius: 6px;
-    font-size: 0.875rem;
-    font-weight: 600;
-    text-decoration: none;
-    transition: background 0.2s;
+  .step .icon{width:40px; height:40px; margin-bottom:22px; color:var(--gold);}
+  .step h3{font-size:22px; color:var(--ink); margin-bottom:12px;}
+  .step p{color:var(--ink-dim); font-size:15px;}
+  .step-arrow{
+    display:none; align-items:center; justify-content:center; color:var(--gold-dim); font-size:22px;
   }
-  .nav-cta:hover { background: var(--gold-light); }
-
-  /* HERO */
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 120px 5% 80px;
-    position: relative;
-    overflow: hidden;
-    background-image: url('hero.jpg');
-    background-size: cover;
-    background-position: center top;
+  @media(min-width:820px){
+    .steps{align-items:stretch;}
   }
 
-  .hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      to bottom,
-      rgba(13,13,13,0.2) 0%,
-      rgba(13,13,13,0.1) 40%,
-      rgba(13,13,13,0.5) 85%,
-      rgba(13,13,13,0.85) 100%
-    );
-    pointer-events: none;
+  /* ---------- INCLUDES ---------- */
+  .includes-grid{
+    display:grid; grid-template-columns:1fr; gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    border-radius:10px;
+    overflow:hidden;
+    max-width:980px; margin:0 auto;
   }
-
-  .hero-tag {
-    display: inline-block;
-    border: 1px solid var(--gold);
-    color: var(--gold);
-    font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    padding: 0.4rem 1rem;
-    border-radius: 100px;
-    margin-bottom: 2rem;
+  @media(min-width:640px){ .includes-grid{grid-template-columns:1fr 1fr;} }
+  @media(min-width:980px){ .includes-grid{grid-template-columns:1fr 1fr 1fr;} }
+  .include-item{
+    background:var(--bg); padding:36px 30px;
+    transition:background .25s ease;
   }
+  .include-item:hover{background:var(--panel);}
+  .include-item .icon{width:30px; height:30px; color:var(--gold); margin-bottom:18px;}
+  .include-item h3{font-family:var(--sans); font-size:17px; font-weight:600; color:var(--ink); margin-bottom:8px;}
+  .include-item p{color:var(--ink-dim); font-size:14.5px;}
 
-  .hero h1 {
-    font-size: clamp(2rem, 5vw, 3.8rem);
-    font-weight: 700;
-    line-height: 1.12;
-    letter-spacing: -0.03em;
-    max-width: 820px;
-    margin-bottom: 1.5rem;
+  /* ---------- FOR WHOM ---------- */
+  .whom{background:var(--bg-soft); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .whom-grid{
+    display:flex; flex-wrap:wrap; justify-content:center; gap:14px;
+    max-width:880px; margin:0 auto;
   }
-
-  .hero h1 em {
-    font-style: normal;
-    color: var(--gold);
+  .whom-chip{
+    border:1px solid var(--line); border-radius:40px;
+    padding:16px 28px;
+    font-family:var(--serif); font-size:19px; color:var(--ink);
+    background:var(--bg);
+    transition:border-color .25s ease, color .25s ease, transform .25s ease;
   }
+  .whom-chip:hover{border-color:var(--gold); color:var(--gold-soft); transform:translateY(-2px);}
 
-  .hero-sub {
-    font-size: clamp(1rem, 2vw, 1.2rem);
-    color: var(--gray-light);
-    max-width: 600px;
-    margin-bottom: 2.5rem;
-    line-height: 1.7;
+  /* ---------- CONTACT ---------- */
+  .contact-inner{
+    display:grid; grid-template-columns:1fr; gap:52px;
+    max-width:980px; margin:0 auto;
+    align-items:start;
   }
-
-  .hero-actions {
-    display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+  @media(min-width:860px){ .contact-inner{grid-template-columns:0.85fr 1.15fr;} }
+  .contact-left h2{font-size:clamp(28px, 4vw, 40px); color:var(--ink); margin-bottom:18px; line-height:1.2;}
+  .contact-left p{color:var(--ink-dim); font-size:16px; margin-bottom:28px; max-width:400px;}
+  .contact-direct{
+    display:inline-flex; flex-direction:column; gap:4px;
+    border-top:1px solid var(--line); padding-top:20px;
   }
+  .contact-direct span{font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-faint);}
+  .contact-direct a{font-family:var(--serif); font-size:22px; color:var(--gold-soft); text-decoration:none;}
+  .contact-direct a:hover{color:var(--gold);}
 
-  .btn-primary {
-    background: var(--gold);
-    color: #000;
-    padding: 0.85rem 2rem;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: 600;
-    text-decoration: none;
-    transition: background 0.2s, transform 0.15s;
+  form{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:36px;}
+  .field{margin-bottom:20px;}
+  .field label{display:block; font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:8px;}
+  .field input, .field textarea{
+    width:100%; background:var(--bg); border:1px solid var(--line); border-radius:6px;
+    color:var(--ink); font-family:var(--sans); font-size:15px; padding:13px 14px;
+    outline:none; transition:border-color .2s ease;
   }
-  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .field input:focus, .field textarea:focus{border-color:var(--gold);}
+  .field textarea{resize:vertical; min-height:100px;}
+  form .btn{width:100%; justify-content:center; border:none; cursor:pointer;}
+  .form-note{font-size:12.5px; color:var(--ink-faint); margin-top:14px; text-align:center;}
 
-  .btn-secondary {
-    background: transparent;
-    color: var(--white);
-    padding: 0.85rem 2rem;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: 500;
-    text-decoration: none;
-    border: 1px solid var(--border);
-    transition: border-color 0.2s, transform 0.15s;
+  /* ---------- FOOTER ---------- */
+  footer{
+    padding:44px 24px; text-align:center;
+    border-top:1px solid var(--line);
   }
-  .btn-secondary:hover { border-color: rgba(255,255,255,0.3); transform: translateY(-1px); }
+  footer .flogo{font-family:var(--serif); font-size:18px; color:var(--ink); margin-bottom:6px;}
+  footer .flogo span{color:var(--gold);}
+  footer .ftag{font-size:13px; color:var(--ink-faint);}
+  footer a.flink{color:var(--gold-soft); text-decoration:none; border-bottom:1px solid var(--gold-dim);}
+  footer a.flink:hover{color:var(--gold);}
 
-  /* SECTION BASE */
-  section { padding: 100px 5%; }
-
-  .section-tag {
-    display: inline-block;
-    color: var(--gold);
-    font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-  }
-
-  .section-title {
-    font-size: clamp(1.6rem, 3.5vw, 2.6rem);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    margin-bottom: 1rem;
-    max-width: 640px;
-  }
-
-  .section-sub {
-    color: var(--gray-light);
-    font-size: 1.05rem;
-    max-width: 560px;
-    margin-bottom: 3.5rem;
-    line-height: 1.7;
-  }
-
-  /* SECTORES */
-  .sectores { background: var(--bg2); }
-
-  .sectores-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1.5px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    overflow: hidden;
-  }
-
-  .sector-card {
-    background: var(--bg2);
-    padding: 2.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    transition: background 0.2s;
-  }
-  .sector-card:hover { background: var(--bg3); }
-
-  .sector-icon {
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .sector-label {
-    font-size: 0.7rem;
-    font-weight: 600;
-    color: var(--gold);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-
-  .sector-name {
-    font-size: 1.3rem;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-  }
-
-  .sector-desc {
-    color: var(--gray-light);
-    font-size: 0.9rem;
-    line-height: 1.6;
-  }
-
-  .sector-product {
-    font-size: 0.8rem;
-    color: var(--gold);
-    font-weight: 500;
-    margin-top: 0.5rem;
-  }
-
-  /* QUÉ HACEMOS */
-  .servicios { background: var(--bg); }
-
-  .servicios-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-  }
-
-  .servicio-card {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    transition: border-color 0.2s, transform 0.15s;
-  }
-  .servicio-card:hover { border-color: rgba(201,168,76,0.3); transform: translateY(-2px); }
-
-  .servicio-num {
-    font-size: 0.7rem;
-    color: var(--gold);
-    font-weight: 600;
-    letter-spacing: 0.1em;
-  }
-
-  .servicio-name {
-    font-size: 1.15rem;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-  }
-
-  .servicio-desc {
-    color: var(--gray);
-    font-size: 0.875rem;
-    line-height: 1.6;
-  }
-
-  /* PRECIOS */
-  .precios { background: var(--bg2); }
-
-  .precios-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    align-items: start;
-  }
-
-  .precio-card {
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 2.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-    position: relative;
-    transition: border-color 0.2s;
-  }
-
-  .precio-card.featured {
-    border-color: var(--gold);
-    background: linear-gradient(135deg, #1a1600 0%, var(--bg3) 100%);
-  }
-
-  .precio-badge {
-    position: absolute;
-    top: -13px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--gold);
-    color: #000;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 0.3rem 1rem;
-    border-radius: 100px;
-    white-space: nowrap;
-  }
-
-  .precio-tier {
-    font-size: 0.78rem;
-    font-weight: 600;
-    color: var(--gold);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-
-  .precio-main {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-  }
-
-  .precio-setup {
-    font-size: 2.2rem;
-    font-weight: 700;
-    letter-spacing: -0.03em;
-  }
-
-  .precio-setup span {
-    font-size: 1.1rem;
-    font-weight: 400;
-    color: var(--gray);
-  }
-
-  .precio-mensual {
-    font-size: 0.9rem;
-    color: var(--gray-light);
-  }
-
-  .precio-mensual strong { color: var(--white); }
-
-  .precio-divider {
-    height: 1px;
-    background: var(--border);
-  }
-
-  .precio-features {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-  }
-
-  .precio-features li {
-    font-size: 0.875rem;
-    color: var(--gray-light);
-    display: flex;
-    align-items: flex-start;
-    gap: 0.5rem;
-  }
-
-  .precio-features li::before {
-    content: '✓';
-    color: var(--gold);
-    font-weight: 600;
-    flex-shrink: 0;
-    margin-top: 0.05rem;
-  }
-
-  .precio-cta {
-    display: block;
-    text-align: center;
-    padding: 0.85rem;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    text-decoration: none;
-    margin-top: auto;
-    transition: background 0.2s;
-  }
-
-  .precio-card.featured .precio-cta {
-    background: var(--gold);
-    color: #000;
-  }
-  .precio-card.featured .precio-cta:hover { background: var(--gold-light); }
-
-  .precio-card:not(.featured) .precio-cta {
-    background: transparent;
-    color: var(--white);
-    border: 1px solid rgba(255,255,255,0.15);
-  }
-  .precio-card:not(.featured) .precio-cta:hover { border-color: rgba(255,255,255,0.4); }
-
-  /* FOOTER */
-  footer {
-    background: #080808;
-    border-top: 1px solid var(--border);
-    padding: 3rem 5%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-
-  .footer-brand {
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: var(--white);
-    text-decoration: none;
-  }
-  .footer-brand span { color: var(--gold); }
-
-  .footer-copy {
-    font-size: 0.82rem;
-    color: var(--gray);
-  }
-
-  .footer-powered {
-    font-size: 0.78rem;
-    color: var(--gray);
-  }
-
-  .footer-powered a { color: var(--gold); text-decoration: none; }
-
-  /* RESPONSIVE */
-  @media (max-width: 768px) {
-    nav { padding: 0 4%; }
-    .nav-links { display: none; }
-    section { padding: 70px 4%; }
-    footer { flex-direction: column; align-items: flex-start; }
-  }
+  ::selection{background:var(--gold); color:#1a1408;}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <a href="#" class="nav-logo">Absolut<span>IA</span></a>
-  <ul class="nav-links">
-    <li><a href="#servicios">Soluciones</a></li>
-    <li><a href="#sectores">Sectores</a></li>
-    <li><a href="#precios">Precios</a></li>
-  </ul>
-  <a href="mailto:info@absolutia.ai?subject=Consulta AbsolutIA" class="nav-cta">Hablar con un experto</a>
-</nav>
+<header>
+  <div class="logo">Absolut<span>IA</span></div>
+  <div class="lang-toggle">
+    <button type="button" data-set-lang="es" class="active">ES</button>
+    <button type="button" data-set-lang="en">EN</button>
+  </div>
+</header>
 
 <!-- HERO -->
 <section class="hero">
-  <h1>AbsolutIA — Agencia de IA Integral</h1>
-  <p class="hero-sub">Chatbots, automatizaciones, presencia web y agentes autónomos. Todo listo para tu sector, sin tecnicismos, sin fricción.</p>
-  <div class="hero-actions">
-    <a href="#precios" class="btn-primary">Ver planes y precios</a>
-    <a href="#sectores" class="btn-secondary">Ver soluciones por sector</a>
+  <div class="hero-glow"></div>
+  <div class="hero-ring r1"></div>
+  <div class="hero-ring r2"></div>
+  <div class="hero-content">
+    <span class="eyebrow" data-i18n="hero.eyebrow">ESTUDIO DE IA INTEGRAL · IBIZA</span>
+    <h1 data-i18n="hero.title">Mandanos un mail.<br>Tu negocio se <em>organiza solo</em>.</h1>
+    <p class="sub" data-i18n="hero.sub">Web, asistente y documentos en orden — sin instalar nada, sin aprender nada nuevo.</p>
+    <a href="#contacto" class="btn" data-i18n="hero.cta">Escribinos</a>
+  </div>
+  <div class="scroll-cue"><span data-i18n="hero.scroll">Descubrí cómo</span><div class="line"></div></div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem">
+  <div class="wrap problem-inner reveal">
+    <span class="eyebrow" data-i18n="problem.eyebrow">¿TE SUENA?</span>
+    <h2 data-i18n-html="problem.body">Tenés los contratos en carpetas, las fotos en el móvil, la web desactualizada. Respondés WhatsApps a las once de la noche y no sabés <strong>qué vence el mes que viene</strong>.</h2>
+    <p class="payoff" data-i18n="problem.payoff">Nosotros nos ocupamos de eso.</p>
   </div>
 </section>
 
-<!-- SECTORES -->
-<section class="sectores" id="sectores">
-  <div class="section-tag">Especialización vertical</div>
-  <h2 class="section-title">Una solución diseñada para tu sector</h2>
-  <p class="section-sub">No soluciones genéricas. Sistemas de IA construidos para el lenguaje, los procesos y los clientes de tu industria.</p>
-  <div class="sectores-grid">
-    <div class="sector-card">
-      <div class="sector-icon">🏥</div>
-      <div class="sector-label">Salud</div>
-      <div class="sector-name">Clínicas y Centros de Salud</div>
-      <div class="sector-desc">Gestión de citas, recordatorios automáticos, chatbot para primeras consultas y ficha de paciente inteligente.</div>
-      <div class="sector-product">Sector Salud</div>
+<!-- HOW IT WORKS -->
+<section class="how">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-i18n="how.eyebrow">CÓMO FUNCIONA</span>
+      <h2 data-i18n="how.title">Tres pasos. Ninguno es tu trabajo.</h2>
     </div>
-    <div class="sector-card">
-      <div class="sector-icon">🏠</div>
-      <div class="sector-label">Inmobiliaria</div>
-      <div class="sector-name">Agencias Inmobiliarias</div>
-      <div class="sector-desc">Captación de leads, seguimiento automatizado, presentación de propiedades y gestión de agenda comercial.</div>
-      <div class="sector-product">Sector Inmobiliario</div>
-    </div>
-    <div class="sector-card">
-      <div class="sector-icon">⚖️</div>
-      <div class="sector-label">Legal</div>
-      <div class="sector-name">Despachos y Asesorías</div>
-      <div class="sector-desc">Filtrado de consultas, intake de nuevos clientes, gestión documental y comunicaciones automáticas.</div>
-      <div class="sector-product">Despacho Office</div>
-    </div>
-    <div class="sector-card">
-      <div class="sector-icon">🏢</div>
-      <div class="sector-label">Pymes y Familia</div>
-      <div class="sector-name">Pequeñas Empresas</div>
-      <div class="sector-desc">Panel de control centralizado, atención al cliente 24/7, automatizaciones de back-office y presencia digital.</div>
-      <div class="sector-product">Sector Familia</div>
-    </div>
-  </div>
-</section>
-
-<!-- QUÉ HACEMOS -->
-<section class="servicios" id="servicios">
-  <div class="section-tag">Qué hacemos</div>
-  <h2 class="section-title">Seis servicios, un solo estudio</h2>
-  <p class="section-sub">Implementamos todo lo que tu negocio necesita para operar con IA — sin que tengas que coordinar diez proveedores diferentes.</p>
-  <div class="servicios-grid">
-    <div class="servicio-card">
-      <div class="servicio-num">01</div>
-      <div class="servicio-name">Chatbots con IA</div>
-      <div class="servicio-desc">Agentes conversacionales entrenados en tu negocio. Responden, filtran y derivan 24/7 sin intervención humana.</div>
-    </div>
-    <div class="servicio-card">
-      <div class="servicio-num">02</div>
-      <div class="servicio-name">Automatizaciones</div>
-      <div class="servicio-desc">Flujos que eliminan tareas repetitivas: recordatorios, confirmaciones, reportes, actualizaciones de CRM.</div>
-    </div>
-    <div class="servicio-card">
-      <div class="servicio-num">03</div>
-      <div class="servicio-name">Presencia Web</div>
-      <div class="servicio-desc">Web profesional, rápida y optimizada. Diseñada para convertir visitas en clientes, no solo para verse bien.</div>
-    </div>
-    <div class="servicio-card">
-      <div class="servicio-num">04</div>
-      <div class="servicio-name">Agentes Autónomos</div>
-      <div class="servicio-desc">Sistemas de IA que ejecutan procesos completos sin supervisión: prospección, seguimiento, análisis.</div>
-    </div>
-    <div class="servicio-card">
-      <div class="servicio-num">05</div>
-      <div class="servicio-name">Tienda Social</div>
-      <div class="servicio-desc">Integración de catálogo, pedidos y pagos en WhatsApp, Instagram y web. Vende donde están tus clientes.</div>
-    </div>
-    <div class="servicio-card">
-      <div class="servicio-num">06</div>
-      <div class="servicio-name">Mantenimiento Activo</div>
-      <div class="servicio-desc">Soporte continuo, mejoras mensuales y reportes de rendimiento. Tu sistema mejora con el tiempo, no se queda parado.</div>
-    </div>
-  </div>
-</section>
-
-<!-- PRECIOS -->
-<section class="precios" id="precios">
-  <div class="section-tag">Planes</div>
-  <h2 class="section-title">Precios claros, sin sorpresas</h2>
-  <p class="section-sub">Setup único + mantenimiento mensual. Sin contratos largos. Sin letra pequeña.</p>
-  <div class="precios-grid">
-
-    <div class="precio-card">
-      <div class="precio-tier">Esencial</div>
-      <div class="precio-main">
-        <div class="precio-setup">€795 <span>setup</span></div>
-        <div class="precio-mensual">desde <strong>€99/mes</strong></div>
+    <div class="steps">
+      <div class="step reveal">
+        <span class="num">01</span>
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 6.5 12 13l9-6.5"/><rect x="3" y="5" width="18" height="14" rx="2"/></svg>
+        <h3 data-i18n="how.s1.title">Nos mandás un mail</h3>
+        <p data-i18n="how.s1.body">Contratos, fotos, documentos, lo que tengas a mano. Sin apps, sin plataformas, sin aprender nada.</p>
       </div>
-      <div class="precio-divider"></div>
-      <ul class="precio-features">
-        <li>Chatbot básico con IA</li>
-        <li>Web profesional de 5 páginas</li>
-        <li>Formulario inteligente de contacto</li>
-        <li>Automatización de citas o consultas</li>
-        <li>Soporte por email</li>
-      </ul>
-      <a href="mailto:info@absolutia.ai?subject=Plan Esencial AbsolutIA" class="precio-cta">Empezar con Esencial</a>
-    </div>
-
-    <div class="precio-card featured">
-      <div class="precio-badge">Más popular</div>
-      <div class="precio-tier">Profesional</div>
-      <div class="precio-main">
-        <div class="precio-setup">€1.295 <span>setup</span></div>
-        <div class="precio-mensual">desde <strong>€199/mes</strong></div>
+      <div class="step reveal">
+        <span class="num">02</span>
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1 1.55V21a2 2 0 0 1-4 0v-.09A1.7 1.7 0 0 0 9 19.36a1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.7 1.7 0 0 0 .34-1.87 1.7 1.7 0 0 0-1.55-1H3a2 2 0 0 1 0-4h.09A1.7 1.7 0 0 0 4.64 9a1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.7 1.7 0 0 0 1.87.34H9a1.7 1.7 0 0 0 1-1.55V3a2 2 0 0 1 4 0v.09a1.7 1.7 0 0 0 1 1.55 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.7 1.7 0 0 0-.34 1.87V9a1.7 1.7 0 0 0 1.55 1H21a2 2 0 0 1 0 4h-.09a1.7 1.7 0 0 0-1.55 1z"/></svg>
+        <h3 data-i18n="how.s2.title">Se procesa solo</h3>
+        <p data-i18n="how.s2.body">El sistema lo lee, lo ordena, lo clasifica y lo guarda donde corresponde.</p>
       </div>
-      <div class="precio-divider"></div>
-      <ul class="precio-features">
-        <li>Todo lo del plan Esencial</li>
-        <li>Agente IA especializado en tu sector</li>
-        <li>CRM integrado y automatizado</li>
-        <li>Automatizaciones de back-office</li>
-        <li>Reportes mensuales de rendimiento</li>
-        <li>Soporte prioritario</li>
-      </ul>
-      <a href="mailto:info@absolutia.ai?subject=Plan Profesional AbsolutIA" class="precio-cta">Empezar con Profesional</a>
-    </div>
-
-    <div class="precio-card">
-      <div class="precio-tier">Integral</div>
-      <div class="precio-main">
-        <div class="precio-setup">€1.950 <span>setup</span></div>
-        <div class="precio-mensual">desde <strong>€349/mes</strong></div>
+      <div class="step reveal">
+        <span class="num">03</span>
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M20 6 9 17l-5-5"/></svg>
+        <h3 data-i18n="how.s3.title">Tu negocio, al día</h3>
+        <p data-i18n="how.s3.body">Panel con tus datos reales, web que funciona, asistente que responde por vos.</p>
       </div>
-      <div class="precio-divider"></div>
-      <ul class="precio-features">
-        <li>Todo lo del plan Profesional</li>
-        <li>Agentes autónomos personalizados</li>
-        <li>Integración con sistemas existentes</li>
-        <li>Tienda social (WhatsApp + Web)</li>
-        <li>Estrategia digital continua</li>
-        <li>Soporte dedicado + reunión mensual</li>
-      </ul>
-      <a href="mailto:info@absolutia.ai?subject=Plan Integral AbsolutIA" class="precio-cta">Empezar con Integral</a>
     </div>
-
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- WHAT'S INCLUDED -->
+<section class="includes">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-i18n="inc.eyebrow">QUÉ INCLUYE</span>
+      <h2 data-i18n="inc.title">Todo lo que tu negocio necesita, resuelto.</h2>
+    </div>
+    <div class="includes-grid reveal">
+      <div class="include-item">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v5"/></svg>
+        <h3 data-i18n="inc.1.title">Web profesional</h3>
+        <p data-i18n="inc.1.body">Tu negocio, bien presentado, siempre online.</p>
+      </div>
+      <div class="include-item">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <h3 data-i18n="inc.2.title">Asistente en tu web</h3>
+        <p data-i18n="inc.2.body">Atiende en español, inglés y alemán, a cualquier hora.</p>
+      </div>
+      <div class="include-item">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+        <h3 data-i18n="inc.3.title">Panel privado</h3>
+        <p data-i18n="inc.3.body">Contratos, fichas y vencimientos, todo en un solo lugar.</p>
+      </div>
+      <div class="include-item">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        <h3 data-i18n="inc.4.title">Asistente por email</h3>
+        <p data-i18n="inc.4.body">Le mandás lo que sea, él lo ordena.</p>
+      </div>
+      <div class="include-item">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M14 3v5a1 1 0 0 0 1 1h5"/><path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2Z"/><path d="M9 13h6M9 17h6"/></svg>
+        <h3 data-i18n="inc.5.title">Informes automáticos</h3>
+        <p data-i18n="inc.5.body">Documentos listos, sin que vos los armes.</p>
+      </div>
+      <div class="include-item">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+        <h3 data-i18n="inc.6.title">Desde el navegador</h3>
+        <p data-i18n="inc.6.body">Nada para instalar, nada para configurar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOR WHOM -->
+<section class="whom">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-i18n="whom.eyebrow">PARA QUIÉN</span>
+      <h2 data-i18n="whom.title">Si tenés un negocio en Ibiza, es para vos.</h2>
+    </div>
+    <div class="whom-grid reveal">
+      <div class="whom-chip" data-i18n="whom.1">Inmobiliarias</div>
+      <div class="whom-chip" data-i18n="whom.2">Clínicas</div>
+      <div class="whom-chip" data-i18n="whom.3">Estudios de abogados</div>
+      <div class="whom-chip" data-i18n="whom.4">Restaurantes</div>
+      <div class="whom-chip" data-i18n="whom.5">Tiendas</div>
+      <div class="whom-chip" data-i18n="whom.6">Talleres</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contacto">
+  <div class="wrap contact-inner reveal">
+    <div class="contact-left">
+      <span class="eyebrow" data-i18n="contact.eyebrow">CONTACTO</span>
+      <h2 data-i18n="contact.title" style="margin-top:14px;">Contanos qué necesita tu negocio.</h2>
+      <p data-i18n="contact.sub">Te respondemos en 24 horas. Sin compromiso, sin vueltas.</p>
+      <div class="contact-direct">
+        <span data-i18n="contact.directLabel">O escribinos directo</span>
+        <a href="mailto:info@absolutia.ai">info@absolutia.ai</a>
+      </div>
+    </div>
+    <form id="contactForm">
+      <div class="field">
+        <label data-i18n="form.name">Nombre</label>
+        <input type="text" name="nombre" required>
+      </div>
+      <div class="field">
+        <label data-i18n="form.business">Negocio</label>
+        <input type="text" name="negocio" required>
+      </div>
+      <div class="field">
+        <label data-i18n="form.email">Email</label>
+        <input type="email" name="email" required>
+      </div>
+      <div class="field">
+        <label data-i18n="form.message">Mensaje</label>
+        <textarea name="mensaje" required></textarea>
+      </div>
+      <button type="submit" class="btn" data-i18n="form.submit">Enviar</button>
+      <p class="form-note" data-i18n="form.note">Se abrirá tu programa de correo con el mensaje listo para enviar.</p>
+    </form>
+  </div>
+</section>
+
 <footer>
-  <a href="https://absolutia.ai" class="footer-brand">Absolut<span>IA</span></a>
-  <div class="footer-copy">© 2026 AbsolutIA · absolutia.ai — A Chains of Brains production · IBZ, Spain</div>
+  <div class="flogo">Absolut<span>IA</span></div>
+  <p class="ftag">
+    <span data-i18n="footer.tag">Estudio de IA Integral · Ibiza</span>
+    &nbsp;·&nbsp;
+    <a href="#contacto" class="flink" data-i18n="footer.contact">Contacto</a>
+  </p>
 </footer>
+
+<script>
+(function(){
+  var dict = {
+    es: {
+      "hero.eyebrow": "ESTUDIO DE IA INTEGRAL · IBIZA",
+      "hero.title": "Mandanos un mail.<br>Tu negocio se <em>organiza solo</em>.",
+      "hero.sub": "Web, asistente y documentos en orden — sin instalar nada, sin aprender nada nuevo.",
+      "hero.cta": "Escribinos",
+      "hero.scroll": "Descubrí cómo",
+      "problem.eyebrow": "¿TE SUENA?",
+      "problem.body": "Tenés los contratos en carpetas, las fotos en el móvil, la web desactualizada. Respondés WhatsApps a las once de la noche y no sabés <strong>qué vence el mes que viene</strong>.",
+      "problem.payoff": "Nosotros nos ocupamos de eso.",
+      "how.eyebrow": "CÓMO FUNCIONA",
+      "how.title": "Tres pasos. Ninguno es tu trabajo.",
+      "how.s1.title": "Nos mandás un mail",
+      "how.s1.body": "Contratos, fotos, documentos, lo que tengas a mano. Sin apps, sin plataformas, sin aprender nada.",
+      "how.s2.title": "Se procesa solo",
+      "how.s2.body": "El sistema lo lee, lo ordena, lo clasifica y lo guarda donde corresponde.",
+      "how.s3.title": "Tu negocio, al día",
+      "how.s3.body": "Panel con tus datos reales, web que funciona, asistente que responde por vos.",
+      "inc.eyebrow": "QUÉ INCLUYE",
+      "inc.title": "Todo lo que tu negocio necesita, resuelto.",
+      "inc.1.title": "Web profesional",
+      "inc.1.body": "Tu negocio, bien presentado, siempre online.",
+      "inc.2.title": "Asistente en tu web",
+      "inc.2.body": "Atiende en español, inglés y alemán, a cualquier hora.",
+      "inc.3.title": "Panel privado",
+      "inc.3.body": "Contratos, fichas y vencimientos, todo en un solo lugar.",
+      "inc.4.title": "Asistente por email",
+      "inc.4.body": "Le mandás lo que sea, él lo ordena.",
+      "inc.5.title": "Informes automáticos",
+      "inc.5.body": "Documentos listos, sin que vos los armes.",
+      "inc.6.title": "Desde el navegador",
+      "inc.6.body": "Nada para instalar, nada para configurar.",
+      "whom.eyebrow": "PARA QUIÉN",
+      "whom.title": "Si tenés un negocio en Ibiza, es para vos.",
+      "whom.1": "Inmobiliarias", "whom.2": "Clínicas", "whom.3": "Estudios de abogados",
+      "whom.4": "Restaurantes", "whom.5": "Tiendas", "whom.6": "Talleres",
+      "contact.eyebrow": "CONTACTO",
+      "contact.title": "Contanos qué necesita tu negocio.",
+      "contact.sub": "Te respondemos en 24 horas. Sin compromiso, sin vueltas.",
+      "contact.directLabel": "O escribinos directo",
+      "form.name": "Nombre", "form.business": "Negocio", "form.email": "Email", "form.message": "Mensaje",
+      "form.submit": "Enviar",
+      "form.note": "Se abrirá tu programa de correo con el mensaje listo para enviar.",
+      "footer.tag": "Estudio de IA Integral · Ibiza",
+      "footer.contact": "Contacto"
+    },
+    en: {
+      "hero.eyebrow": "INTEGRAL AI STUDIO · IBIZA",
+      "hero.title": "Send us an email.<br>Your business <em>runs itself</em>.",
+      "hero.sub": "Website, assistant and paperwork in order — nothing to install, nothing to learn.",
+      "hero.cta": "Get in touch",
+      "hero.scroll": "See how it works",
+      "problem.eyebrow": "SOUND FAMILIAR?",
+      "problem.body": "Your contracts live in folders, your photos on your phone, your website hasn't changed in years. You answer WhatsApp at eleven at night and have no idea <strong>what's due next month</strong>.",
+      "problem.payoff": "We take care of that.",
+      "how.eyebrow": "HOW IT WORKS",
+      "how.title": "Three steps. None of them are your job.",
+      "how.s1.title": "You send us an email",
+      "how.s1.body": "Contracts, photos, documents, whatever you have. No apps, no platforms, nothing to learn.",
+      "how.s2.title": "It gets handled",
+      "how.s2.body": "The system reads it, sorts it, classifies it and files it where it belongs.",
+      "how.s3.title": "Your business, up to date",
+      "how.s3.body": "A dashboard with your real data, a website that works, an assistant that answers for you.",
+      "inc.eyebrow": "WHAT'S INCLUDED",
+      "inc.title": "Everything your business needs, handled.",
+      "inc.1.title": "A professional website",
+      "inc.1.body": "Your business, well presented, always online.",
+      "inc.2.title": "An assistant on your site",
+      "inc.2.body": "Answers in Spanish, English and German, any time of day.",
+      "inc.3.title": "A private dashboard",
+      "inc.3.body": "Contracts, records and deadlines, all in one place.",
+      "inc.4.title": "An email assistant",
+      "inc.4.body": "You send it anything, it puts it in order.",
+      "inc.5.title": "Automatic reports",
+      "inc.5.body": "Documents ready, without you putting them together.",
+      "inc.6.title": "Straight from the browser",
+      "inc.6.body": "Nothing to install, nothing to configure.",
+      "whom.eyebrow": "WHO IT'S FOR",
+      "whom.title": "If you run a business in Ibiza, this is for you.",
+      "whom.1": "Real estate agencies", "whom.2": "Clinics", "whom.3": "Law firms",
+      "whom.4": "Restaurants", "whom.5": "Shops", "whom.6": "Workshops",
+      "contact.eyebrow": "CONTACT",
+      "contact.title": "Tell us what your business needs.",
+      "contact.sub": "We reply within 24 hours. No commitment, no fuss.",
+      "contact.directLabel": "Or write to us directly",
+      "form.name": "Name", "form.business": "Business", "form.email": "Email", "form.message": "Message",
+      "form.submit": "Send",
+      "form.note": "This opens your email app with the message ready to send.",
+      "footer.tag": "Integral AI Studio · Ibiza",
+      "footer.contact": "Contact"
+    }
+  };
+
+  var mailSubject = { es: "Consulta desde absolutia.ai", en: "Inquiry from absolutia.ai" };
+  var mailBodyTpl = {
+    es: function(d){ return "Nombre: "+d.nombre+"\nNegocio: "+d.negocio+"\nEmail: "+d.email+"\n\nMensaje:\n"+d.mensaje; },
+    en: function(d){ return "Name: "+d.nombre+"\nBusiness: "+d.negocio+"\nEmail: "+d.email+"\n\nMessage:\n"+d.mensaje; }
+  };
+
+  function applyLang(lang){
+    document.documentElement.lang = lang;
+    document.documentElement.setAttribute('data-lang', lang);
+    var d = dict[lang];
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var key = el.getAttribute('data-i18n');
+      if(d[key] !== undefined) el.textContent = d[key];
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(function(el){
+      var key = el.getAttribute('data-i18n-html');
+      if(d[key] !== undefined) el.innerHTML = d[key];
+    });
+    var heroTitle = document.querySelector('[data-i18n="hero.title"]');
+    if(heroTitle) heroTitle.innerHTML = d['hero.title'];
+    document.querySelectorAll('.lang-toggle button').forEach(function(b){
+      b.classList.toggle('active', b.getAttribute('data-set-lang') === lang);
+    });
+    try{ localStorage.setItem('absolutia_lang', lang); }catch(e){}
+    window._absolutiaLang = lang;
+  }
+
+  document.querySelectorAll('.lang-toggle button').forEach(function(b){
+    b.addEventListener('click', function(){ applyLang(b.getAttribute('data-set-lang')); });
+  });
+
+  var startLang = 'es';
+  try{
+    var saved = localStorage.getItem('absolutia_lang');
+    if(saved) startLang = saved;
+    else if(navigator.language && navigator.language.toLowerCase().indexOf('es') !== 0) startLang = 'en';
+  }catch(e){}
+  applyLang(startLang);
+
+  var form = document.getElementById('contactForm');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var lang = window._absolutiaLang || 'es';
+    var data = {
+      nombre: form.nombre.value,
+      negocio: form.negocio.value,
+      email: form.email.value,
+      mensaje: form.mensaje.value
+    };
+    var subject = encodeURIComponent(mailSubject[lang]);
+    var body = encodeURIComponent(mailBodyTpl[lang](data));
+    window.location.href = 'mailto:info@absolutia.ai?subject=' + subject + '&body=' + body;
+  });
+
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(function(el){ observer.observe(el); });
+
+  document.querySelectorAll('.steps .step, .includes-grid .include-item, .whom-chip').forEach(function(el, i){
+    el.classList.add('reveal');
+    el.style.transitionDelay = (i % 6) * 0.06 + 's';
+  });
+  document.querySelectorAll('.steps .step, .includes-grid .include-item, .whom-chip').forEach(function(el){
+    observer.observe(el);
+  });
+})();
+</script>
 
 </body>
 </html>
